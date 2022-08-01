@@ -6,6 +6,9 @@ const generateMarkdown = require('./generateMarkdown')
 const Manager = require('./lib/Manager')
 const Intern = require('./lib/Intern')
 const Engineer = require('./lib/Engineer')
+const dist_dir = path.resolve(__dirname, 'dist');
+const dist_path = path.join(dist_dir, 'generated_team.html')
+const generateHtml = require('./src/generateHtml')
 
 const teamArray = [];
 
@@ -51,12 +54,12 @@ const teamArray = [];
 //         }
 //     });
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {
-    fs.writeFileSync(path.join(process.cwd(),fileName), data);
+function buildTeam(){
+fs.writeFileSync(dist_path, generateHtml(teamArray));
 }
 
+
 function buildEngineer(){
-    //tbd
     inquirer.prompt([{
         type: 'input',
         name: 'engineerName',
@@ -69,28 +72,49 @@ function buildEngineer(){
     },
     {
         type: 'input',
-        name: 'managerEmail',
-        message: 'Please give the team manager email.',
+        name: 'engineerEmail',
+        message: 'Please give the engineer email.',
     },
     {
         type: 'input',
-        name: 'managerOfficeNum',
-        message: 'Please give the team manager office number.',
+        name: 'github',
+        message: 'Please give the engineer Github.',
     },
 ]).then(answers => {
-    let mgr = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNum);
-    teamArray.push(mgr);
-    console.log('teamArray = ', teamArray, 'mgr = ', mgr );
+    let engr = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.github);
+    teamArray.push(engr);
+    console.log('teamArray = ', teamArray, 'engr = ', engr );
     addTeamMembers();
 })
 }
 
 function buildIntern(){
-    //tbd
-}
-
-function buildTeam(){
-    //tbd
+    inquirer.prompt([{
+        type: 'input',
+        name: 'internName',
+        message: 'Please give the intern name.',
+    },
+    {
+        type: 'input',
+        name: 'internId',
+        message: 'Please give the intern ID.',
+    },
+    {
+        type: 'input',
+        name: 'internEmail',
+        message: 'Please give the intern email.',
+    },
+    {
+        type: 'input',
+        name: 'school',
+        message: 'Please give the intern school.',
+    },
+]).then(answers => {
+    let intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.school);
+    teamArray.push(intern);
+    console.log('teamArray = ', teamArray, 'intern = ', intern );
+    addTeamMembers();
+})
 }
 
 function addTeamMembers(){
