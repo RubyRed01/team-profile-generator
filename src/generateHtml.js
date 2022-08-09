@@ -1,4 +1,5 @@
 function generateHtml(team){
+    console.log('generateHtml function worked');
     return `
     <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +11,7 @@ function generateHtml(team){
     <title>My Team</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/c502137733.js"></script>
 </head>
 
@@ -35,6 +36,7 @@ function generateHtml(team){
 }
 
 function generateManager(m){
+    console.log('generateManager function worked');
     return `
         <div class="card employee-card">
         <div class="card-header">
@@ -53,10 +55,19 @@ function generateManager(m){
 }
 
 function generateTeam(team){
+    console.log(team);
+    // empty array to join later
     let teamHtml = [];
+    // pushing teamHtml elements to team
     teamHtml.push(team
+        // filter will filter out 'Manager' from .getRole elements
         .filter(e  => e.getRole() === 'Manager')
+        // map will take filtered out manager elements and pass them into generate manager
         .map(m => generateManager(m)));
-}
+
+    // returns the previous code into the teamHtml, joining it so it becomes a string (instead of an array so it can actually be displayed)
+    return teamHtml.join('')
+    }
+
 
 module.exports = generateHtml;
