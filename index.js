@@ -11,48 +11,6 @@ const generateHtml = require('./src/generateHtml')
 
 const teamArray = [];
 
-// TODO: Create an array of questions for user input
-// const questions = [
-//     {
-//         type: 'input',
-//         name: 'managers-name',
-//         message: 'What is the name of the team manager?',
-//     },
-//     {
-//         type: 'input',
-//         name: 'manager-id',
-//         message: 'What is the employee ID number for the team manager?',
-//     },
-//     {
-//         type: 'input',
-//         name: 'manager-email',
-//         message: 'What is the email for the team manager?',
-//     },
-//     {
-//         type: 'input',
-//         name: 'office-number',
-//         message: 'What is the office number for the team manager?',
-//     },
-//     {
-        
-//     }
-// ];
-
-// inquirer
-//     .prompt(questions)
-//     .then((answers) => {
-//         // Use user feedback for... whatever!!
-//         console.log("Here are your chosen answers.", answers)
-//         writeToFile("test.md", generateMarkdown({...answers}))
-//     })
-//     .catch((error) => {
-//         if (error.isTtyError) {
-//             // Prompt couldn't be rendered in the current environment
-//         } else {
-//             // Something else went wrong
-//         }
-//     });
-// TODO: Create a function to write README file
 function buildTeam(){
 fs.writeFileSync(dist_path, generateHtml(teamArray));
 }
