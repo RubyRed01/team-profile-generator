@@ -1,3 +1,4 @@
+// html creation function
 function generateHtml(team){
     return `
     <!DOCTYPE html>
@@ -34,6 +35,7 @@ function generateHtml(team){
     `;
 }
 
+// functon for creating manager div and adding it to html
 function generateManager(m){
     return `
         <div class="card employee-card">
@@ -52,6 +54,7 @@ function generateManager(m){
         `;
 }
 
+// function for engineer div and adding it to html
 function generateEngineer(en){
     return `
         <div class="card employee-card">
@@ -70,6 +73,7 @@ function generateEngineer(en){
         `;
 }
 
+// function for creating intern div and adding it to html
 function generateIntern(intern){
     return `
         <div class="card employee-card">
@@ -97,10 +101,14 @@ function generateTeam(team){
         .filter(e  => e.getRole() === 'Manager')
         // map will take filtered out manager elements and pass them into generate manager
         .map(m => generateManager(m)));
+
+        // same filtering + mapping for engineer
     teamHtml.push(team
         .filter(e => e.getRole() === 'Engineer')
         .map(en => generateEngineer(en)));
 
+
+        // same filtering + mapping for intern
     teamHtml.push(team
         .filter(e => e.getRole() === 'Intern')
         .map(intern => generateIntern(intern)));
