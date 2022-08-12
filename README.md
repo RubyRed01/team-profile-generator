@@ -9,10 +9,6 @@ An application that generates an HTML of a team and their about info, consisting
 
 * [Installation](#installation)
 
-* [Usage](#usage)
-
-* [Contribute](#contribute)
-
 * [Testing](#testing)
 
 ## Installation
